@@ -1,0 +1,63 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+int main()
+{
+    int number_card;
+    cin>>number_card;
+ 
+    unordered_map<int,int> store;
+    unordered_map<int,int> result;
+    
+    for(int i=0;i<number_card;i++){
+        
+        for(int n=0;n<25;n++){
+            int temp;
+            cin>>temp;
+            if(store.find(temp)==store.end()){
+                store.insert(pair<int,int>(temp,i+1));
+                
+            }
+            else 
+            {
+              int pair1=store.find(temp)->second;
+              int pair2=i+1;
+              if(result.find(pair1)==result.end()||result.find(pair1)->second>pair2){
+                  result.insert(pair<int,int>(pair1,pair2));
+              }
+              
+            }
+            
+           
+            
+          
+            
+            
+        }
+        
+        
+        
+        
+    
+    }
+    for(int i=1;i<=number_card;i++){
+        if(result.find(i)!=result.end()){
+            cout<<result.find(i)->first<<" "<<result.find(i)->second;
+            return 0;
+        }
+    }
+    cout<<"no ties"<<endl;
+    return 0;
+    
+}

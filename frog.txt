@@ -1,0 +1,278 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+  int lanes;
+  int width;
+  cin>>lanes;
+  cin>>width;
+  
+  int initial_[lanes];
+
+  
+  int speed[lanes];
+  int danger[lanes][width];
+  
+  int car[lanes][width];
+  
+  for(int n=0;n<lanes;n++){
+      speed[n]=0;
+      for(int i=0;i<width;i++){
+          danger[n][i]=0;
+          car[n][i]=0;
+          
+          
+      }
+  }
+  
+  pair<int,int> frog;
+  
+  for(int n=0;n<lanes;n++){
+      int initial;
+      cin>>initial;
+      initial_[n]=initial;
+ 
+      int gap;
+      cin>>gap;
+      cin>>speed[n];
+      for(int i=initial;i<width;i=i+gap){
+         car[n][i]=1;
+      }
+  }
+  
+  int frog_x;
+  cin>>frog_x;
+  string input;
+  cin>>input;
+  
+  frog.first=lanes;
+  frog.second=frog_x;
+  
+  
+//      for(int n=0;n<lanes;n++){
+//       for(int i=0;i<width;i++){
+//           cout<<car[n][i];
+//       }
+//       cout<<endl;
+//   }
+//   cout<<endl;
+  
+  
+ 
+  int index=0;
+  while(index<input.length()){
+      cout<<index<<endl;
+         if(frog.first<0) {
+             cout<<"safe"<<endl;
+             return 0;
+         }
+      
+      
+      
+          if(input.at(index)=='U'){
+              
+               int direction=(frog.first-1)%2==0?1:-1;
+              //update car position
+              
+             int start=(initial_[n]+direction*speed[frog.first-1]+width)%width;
+             for(int n=0;n<width;n++){
+                 car[frog.first-1][n]=0;
+             }
+             
+             for(int n=start;n<width*width;n++){
+                 car()
+             }
+             
+             
+             
+             for(int n=0;n<lanes;n++){
+              for(int i=0;i<width;i++){
+                  cout<<car[n][i];
+              }
+              cout<<endl;
+          }
+          cout<<endl;
+          
+         
+          for(int i=0;i<width;i++){
+              if(car[frog.first-1][i]==1){
+                  for(int k=1;k<=speed[frog.first-1];k++){
+                    //   cout<<i+k*direction<<endl;
+                      
+                      danger[frog.first-1][(i+k*direction+width)%width]=1;
+                  }
+                  
+              }
+   
+          }
+          for(int n=0;n<lanes;n++){
+              for(int i=0;i<width;i++){
+                  cout<<danger[n][i];
+              }
+              cout<<endl;
+          }
+          
+
+        if(danger[frog.first-1][frog.second]) {
+            cout<<"squish";
+            return 0;
+            
+        }
+        else(frog.first--);
+          }
+          
+          
+          
+          
+          
+          else if(input.at(index)=='L'&&frog.first<lanes){
+              frog.second--;
+              int direction=(frog.first)%2==0?1:-1;
+              if(frog.second<0) {
+                  cout<<"squish"<<endl;
+                  return 0;
+              }
+              int temp[width];
+          for(int n=0;n<width;n++){
+              temp[n]=car[frog.first][n];
+          }
+          for(int n=0;n<width;n++){
+              car[frog.first][n]=0;
+          }
+          for(int n=0;n<width;n++){
+              if(temp[n]){
+                  car[frog.first][(index*speed[frog.first]*direction+width+n)%width]=1;
+              }
+          }
+                   
+                   
+         
+          for(int i=0;i<width;i++){
+              if(car[frog.first][i]==1){
+                  for(int k=1;k<=speed[frog.first];k++){
+                    //   cout<<i+k*direction<<endl;
+                      
+                      danger[frog.first][(i+k*direction+width)%width]=1;
+                  }
+                  
+              }
+   
+          }
+                  if(danger[frog.first][frog.second]) {
+            cout<<"squish";
+            return 0;
+            
+        }
+        
+          }
+          
+          else if(input.at(index)=='R'&&frog.first<lanes){
+              frog.second++;
+                int direction=(frog.first)%2==0?1:-1;
+              if(frog.second>=lanes){
+                  cout<<"squish"<<endl;
+                  return 0;
+              }
+              int temp[width];
+          for(int n=0;n<width;n++){
+              temp[n]=car[frog.first][n];
+          }
+          for(int n=0;n<width;n++){
+              car[frog.first][n]=0;
+          }
+          for(int n=0;n<width;n++){
+              if(temp[n]){
+                  car[frog.first][(index*direction*speed[frog.first]+width+n)%width]=1;
+              }
+          }
+                   
+                   
+       
+          for(int i=0;i<width;i++){
+              if(car[frog.first][i]==1){
+                  for(int k=1;k<=speed[frog.first];k++){
+                    //   cout<<i+k*direction<<endl;
+                      
+                      danger[frog.first][(i+k*direction+width)%width]=1;
+                  }
+                  
+              }
+   
+          }
+                  if(danger[frog.first][frog.second]) {
+            cout<<"squish";
+            return 0;
+            
+        }
+        
+          }
+          
+          
+         else if(input.at(index)=='D'&&frog.first<lanes-1){
+              
+              int direction=(frog.first+1)%2==0?1:-1;
+              //update car position
+          int temp[width];
+          for(int n=0;n<width;n++){
+              temp[n]=car[frog.first+1][n];
+          }
+          for(int n=0;n<width;n++){
+              car[frog.first+1][n]=0;
+          }
+          for(int n=0;n<width;n++){
+              if(temp[n]){
+                  car[frog.first+1][(index*direction*speed[frog.first+1]+width+n)%width]=1;
+              }
+          }
+          
+          
+          for(int i=0;i<width;i++){
+              if(car[frog.first-1][i]==1){
+                  for(int k=1;k<=speed[frog.first+1];k++){
+                    //   cout<<i+k*direction<<endl;
+                      
+                      danger[frog.first+1][(i+k*direction+width)%width]=1;
+                  }
+                  
+              }
+   
+          }
+          
+
+        if(danger[frog.first+1][frog.second]) {
+            cout<<"squish";
+            return 0;
+            
+        }
+        else(frog.first--);
+          }
+          
+          
+          
+          
+          
+          index++;
+      
+      
+  }
+  
+
+        
+
+  }
+  
+
+  
+
+
