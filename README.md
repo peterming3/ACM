@@ -1,2 +1,2 @@
 # ACM
-Problems solution of Kattis
+Problem solutions from Kattis
